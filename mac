@@ -114,7 +114,6 @@ tap "thoughtbot/formulae"
 tap "homebrew/services"
 tap "universal-ctags/universal-ctags"
 tap "caskroom/cask"
-tap "heroku/brew"
 
 # Unix
 brew "universal-ctags", args: ["HEAD"]
@@ -125,18 +124,7 @@ brew "reattach-to-user-namespace"
 brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
-brew "watchman"
 brew "zsh"
-
-# Heroku
-brew "heroku/brew/heroku"
-brew "parity"
-
-# GitHub
-brew "hub"
-
-# Image manipulation
-brew "imagemagick"
 
 # Programming language prerequisites and package managers
 brew "libyaml" # should come after openssl
@@ -148,10 +136,6 @@ cask "gpg-suite"
 brew "postgres", restart_service: :changed
 brew "redis", restart_service: :changed
 EOF
-
-fancy_echo "Update heroku binary ..."
-brew unlink heroku
-brew link --force heroku
 
 fancy_echo "Configuring asdf version manager ..."
 if [ ! -d "$HOME/.asdf" ]; then
@@ -195,7 +179,7 @@ fancy_echo "Installing latest Node ..."
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs"
 
-if [ -f "$HOME/.laptop.local" ]; then
+if [ -f "$HOME/.laptop.local" ]; thfen
   fancy_echo "Running your customizations from ~/.laptop.local ..."
   # shellcheck disable=SC1090
   . "$HOME/.laptop.local"
